@@ -9,7 +9,10 @@ function App() {
         <HouseList/>
       </header>
     </div>
+
   );
 }
 
 export default App;
+
+

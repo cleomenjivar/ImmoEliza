@@ -41,19 +41,23 @@ export default class HouseList extends React.Component {
         handleSubmit(event) {
             event.preventDefault()
             console.log(this.state)
+            console.log({"data": {"area":parseFloat(this.state.area),
+            "postalCode":parseInt(this.state.postalCode),
+            "subtypeProperty": this.state.subtypeProperty,
+            "buildingCondition": this.state.buildingCondition,
+            "BedroomsCount":parseInt(this.state.BedroomsCount),
+            "facadeCount":parseInt(this.state.facadeCount),
+            "outsideSpace":parseFloat(this.state.outsideSpace),
+            "landSurface":parseFloat(this.state.landSurface),
+            }})
             axios.post("https://immoelizapredict.herokuapp.com/predict/", {"data": {"area":parseFloat(this.state.area),
-            "postal-code":parseInt(this.state.postalCode),
-            "subtype-property": this.state.subtypeProperty,
-            "building-condition": this.state.buildingCondition,
-            "Bedrooms-count":parseInt(this.state.BedroomsCount),
-            "fireplace-exist":this.state.fireplaceExists,
-            "has-garden":this.state.hasGarden,
-            "has-swimming-pool":this.state.hasSwimmingPool,
-            "has-terrace":this.state.hasTerrace,
-            "facade-count":parseInt(this.state.facadeCount),
-            "outside-space":parseFloat(this.state.outsideSpace),
-            "land-surface":parseFloat(this.state.landSurface),
-            "has-fully-equipped-kitchen": this.state.hasFullyEquippedKitchen
+            "postalCode":parseInt(this.state.postalCode),
+            "subtypeProperty": this.state.subtypeProperty,
+            "buildingCondition": this.state.buildingCondition,
+            "BedroomsCount":parseInt(this.state.BedroomsCount),
+            "facadeCount":parseInt(this.state.facadeCount),
+            "outsideSpace":parseFloat(this.state.outsideSpace),
+            "landSurface":parseFloat(this.state.landSurface),
             }})
             .then(response =>{
                 console.log(response.data.prediction)
@@ -180,11 +184,34 @@ export default class HouseList extends React.Component {
                                 <option value="9"> 9 </option>
                                 <option value="10"> 10 </option>
                         </select>
-
+                        <label>Fire place exist:</label>
+                        <select onChange={this.fireplaceExistsChange}>
+                                <option value="0"> YES </option>
+                                <option value="1"> NO </option>
+                        </select>
+                        <label>Has garden:</label>
+                        <select onChange={this.hasGardenChange}>
+                                <option value="0"> YES </option>
+                                <option value="1"> NO </option>
+                        </select>
+                        <label>Has swimmingpool:</label>
+                        <select onChange={this.hasSwimmingPoolChange}>
+                                <option value="0"> YES </option>
+                                <option value="1"> NO </option>
+                        </select>
+                        <label>Has terrace:</label>
+                        <select onChange={this.hasTerraceChange}>
+                                <option value="0"> YES </option>
+                                <option value="1"> NO </option>
+                        </select>
                         <input type="number" placeholder="Facade Count" onChange={this.facadeCountChange}/>
                         <input type="number" placeholder="Outside Space" onChange={this.outsideSpaceChange}/>
                         <input type="number" placeholder="Land Surface" onChange={this.landSurfaceChange}/>
-
+                        <label>Has fully equiped kitchen:</label>
+                        <select onChange={this.hasFullyEquippedKitchenChange}>
+                                <option value="0"> YES </option>
+                                <option value="1"> NO </option>
+                        </select>
                         <input type="submit" />
                     </form>
                     {button}
@@ -192,3 +219,24 @@ export default class HouseList extends React.Component {
         );
     }
 }
+
+
+
+
+
+// OBJECT COMPLETE
+
+// axios.post("https://immoelizapredict.herokuapp.com/predict/", {"data": {"area":parseFloat(this.state.area),
+//             "postalCode":parseInt(this.state.postalCode),
+//             "subtypeProperty": this.state.subtypeProperty,
+//             "buildingCondition": this.state.buildingCondition,
+//             "BedroomsCount":parseInt(this.state.BedroomsCount),
+//             "fireplaceExist":this.state.fireplaceExists,
+//             "hasGarden":this.state.hasGarden,
+//             "hasSwimmingPool":this.state.hasSwimmingPool,
+//             "hasTerrace":this.state.hasTerrace,
+//             "facadeCount":parseInt(this.state.facadeCount),
+//             "outsideSpace":parseFloat(this.state.outsideSpace),
+//             "landSurface":parseFloat(this.state.landSurface),
+//             "hasFullyEquippedKitchen": this.state.hasFullyEquippedKitchen
+//             }})
